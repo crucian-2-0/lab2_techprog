@@ -24,8 +24,8 @@ public:
 
     // get è set
     const char* getStartPoint() const;
-    const char* getEndPoint()   const;
-    int         getRouteNumber() const;
+    const char* getEndPoint() const;
+    int getRouteNumber() const;
 
     void setStartPoint(const char* start);
     void setEndPoint(const char* end);

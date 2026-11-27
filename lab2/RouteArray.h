@@ -5,13 +5,16 @@
 
 class RouteArray {
 private:
-    Route* data;
-    int size;
-    int capacity;
-
-    void ensureCapacity(int minCap);
-    void resize(int newCap);
-
+    Route* data; //указатель на первый элемент массива в куче
+    int size; //кол-во добавленных элементов
+    int capacity; //сколько можно поместить элементов в выделенную пам€ть
+                  //не выдел€ем пам€ть каждый раз
+    void ensureCapacity(int minCap); //проверка: хватит ли места
+    void resize(int newCap); //выдел€ет новый массив побольше 
+                             //и копирует туда старые данные
+    bool hasNumber(int number) const; //проверка на наличие номера маршрута
+    //сравнивает строки без регистра ->
+    static bool equalsIgnoreCase(const char* str1, const char* str2);
 public:
     RouteArray();
     RouteArray(const RouteArray& other);
@@ -20,17 +23,16 @@ public:
     RouteArray& operator=(const RouteArray& other);
 
     int getSize() const;
-    Route& at(int index); //с проверкой диапазона
+    Route& at(int index); //возврат ссылки на элемент по индексу
     const Route& at(int index) const;
 
-    void addToEnd(const Route& r);
-    void addAt(int pos, const Route& r); //вставка на любую позицию
-    void removeAt(int pos); //удаление любого
-    void setAt(int pos, const Route& r); //замена (редактирование)
-    void sortByNumber(); //по номеру маршрута
+    void addToEnd(const Route& r); //добавление в конец
+    void addAt(int pos, const Route& r); //добавление по индексу
+    void removeAt(int pos); //удаление по индексу
+    void setAt(int pos, const Route& r); //замена по индексу (редактирование)
+    void sortByNumber(); //сортировка по номеру маршрута
 
-    // ѕоиск по пункту (начало »Ћ» конец)
-    void printByPoint(const char* point) const;
+    void printByPoint(const char* point) const; //поиск и вывод маршрутов
 };
 
 #endif
